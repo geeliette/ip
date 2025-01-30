@@ -1,0 +1,10 @@
+deadline watch lecture /by Monday
+event meeting /from Tue 3pm /to 6pm
+todo tutorial
+list
+mark 2
+mark 1
+list
+unmark 2
+list
+bye

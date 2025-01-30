@@ -18,7 +18,7 @@ public class Fleur {
                 return;
             // input is list
             } else if (str.equalsIgnoreCase("list")) {
-                System.out.println("'Ere are all ze tasks in your list: ");
+                System.out.println("'Ere are all ze tasks in your list:");
                 for (int i = 0; i < count; i++) {
                     System.out.println((i + 1) + "." + tasks[i].toString());
                 }
@@ -53,7 +53,8 @@ public class Fleur {
                 }
                 tasks[count] = t;
                 count++;
-                System.out.println("Bah, oui! I 'ave added zis task to your list: \n" + t.toString());
+                System.out.println("Bah, oui! I 'ave added zis task to your list:");
+                System.out.println(t.toString());
                 System.out.println("Now you 'ave " + count + " task(s) in your list.");
             }
         }
