@@ -1,12 +1,12 @@
 'Allo! I'm Fleur.
 Tell me what you need to do, s'il vous plaît.
-Bah, oui! I 'ave added zis task to your list:
+Bah, oui! I 'ave added zis deadline task to your list:
 [D][ ] watch lecture  (by: Monday)
 Now you 'ave 1 task(s) in your list.
-Bah, oui! I 'ave added zis task to your list:
+Bah, oui! I 'ave added zis event task to your list:
 [E][ ] meeting  (from: Tue 3pm  to: 6pm)
 Now you 'ave 2 task(s) in your list.
-Bah, oui! I 'ave added zis task to your list:
+Bah, oui! I 'ave added zis todo task to your list:
 [T][ ] tutorial
 Now you 'ave 3 task(s) in your list.
 'Ere are all ze tasks in your list:
