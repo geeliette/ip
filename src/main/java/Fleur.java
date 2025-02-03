@@ -35,6 +35,9 @@ public class Fleur {
                     addDeadline(str);
                 } else if (str.startsWith("event")) {
                     addEvent(str);
+                } else if (str.startsWith("delete")) {
+                    int index = Integer.parseInt(str.substring(7)) - 1;
+                    deleteTask(index);
                 } else {
                     throw new FleurInvalidCommandException();
                 }
@@ -112,6 +115,15 @@ public class Fleur {
         } catch (ArrayIndexOutOfBoundsException | StringIndexOutOfBoundsException e) {
             throw new FleurMissingDetailsException();
         }
+    }
+
+    private void deleteTask(int index) {
+        Task deletedTask = tasks.get(index);
+        count--;
+        System.out.println("D'accord, I 'ave removed zis task from your list:");
+        System.out.println(deletedTask.toString());
+        System.out.println("Now you 'ave " + count + " task(s) in your list.");
+        tasks.remove(index);
     }
 
 }
