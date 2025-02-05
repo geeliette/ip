@@ -1,11 +1,14 @@
 package fleur;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -14,6 +17,7 @@ public class Fleur {
     private static String dataFile = "fleur.txt";
     private static ArrayList<Task> tasks = new ArrayList<>(); // arraylist of tasks
     private static int count = 0; // number of tasks
+    private static final DateTimeFormatter INPUT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -100,28 +104,33 @@ public class Fleur {
         }
     }
 
-    private void addDeadline(String str) throws FleurMissingDetailsException {
+    private void addDeadline(String str) throws FleurMissingDetailsException, FleurInvalidDateException {
         try {
             String desc = str.substring(9).split("/by")[0];
-            String date = str.substring(9).split("/by")[1];
-            Task t = new Deadline(desc, date);
+            String date = str.substring(9).split("/by")[1].trim();
+            LocalDate by = LocalDate.parse(date, INPUT);
+            Task t = new Deadline(desc, by);
             tasks.add(t);
             count++;
             System.out.println("Bah, oui! I 'ave added zis deadline task to your list:");
             System.out.println(t.toString());
             System.out.println("Now you 'ave " + count + " task(s) in your list.");
-        } catch (ArrayIndexOutOfBoundsException | StringIndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new FleurMissingDetailsException();
+        } catch (DateTimeParseException e) {
+            throw new FleurInvalidDateException();
         }
     }
 
-    private void addEvent(String str) throws FleurMissingDetailsException {
+    private void addEvent(String str) throws FleurMissingDetailsException, FleurInvalidDateException {
         try {
             String[] arr = str.substring(6).split("/from");
             String desc = arr[0];
-            String from = arr[1].split("/to")[0];
-            String to = arr[1].split("/to")[1];
-            Task t = new Event(desc, from, to);
+            String from = arr[1].split("/to")[0].trim();
+            String to = arr[1].split("/to")[1].trim();
+            LocalDate dateFrom = LocalDate.parse(from, INPUT);
+            LocalDate dateTo = LocalDate.parse(to, INPUT);
+            Task t = new Event(desc, dateFrom, dateTo);
             tasks.add(t);
             count++;
             System.out.println("Bah, oui! I 'ave added zis event task to your list:");
@@ -129,6 +138,8 @@ public class Fleur {
             System.out.println("Now you 'ave " + count + " task(s) in your list.");
         } catch (ArrayIndexOutOfBoundsException | StringIndexOutOfBoundsException e) {
             throw new FleurMissingDetailsException();
+        } catch (DateTimeParseException e) {
+            throw new FleurInvalidDateException();
         }
     }
 
@@ -176,14 +187,17 @@ public class Fleur {
                 case 'D':
                     String desc = str.substring(7).split("\\(by: ")[0];
                     String date = str.substring(7).split("\\(by: ")[1].replace(")", "");
-                    t = new Deadline(desc, date);
+                    LocalDate by = LocalDate.parse(date, INPUT);
+                    t = new Deadline(desc, by);
                     break;
                 case 'E':
                     String[] arr = str.substring(7).split("\\(from: ");
                     String description = arr[0];
                     String from = arr[1].split("to: ")[0];
                     String to = arr[1].split("to: ")[1].replace(")", "");
-                    t = new Event(description, from, to);
+                    LocalDate dateFrom = LocalDate.parse(from, INPUT);
+                    LocalDate dateTo = LocalDate.parse(to, INPUT);
+                    t = new Event(description, dateFrom, dateTo);
                     break;
                 default:
                     throw new FleurCorruptFileException();
