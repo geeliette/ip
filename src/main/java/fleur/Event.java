@@ -1,3 +1,5 @@
+package fleur;
+
 public class Event extends Task {
 
     protected String from;
