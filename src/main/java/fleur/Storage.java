@@ -1,8 +1,14 @@
 package fleur;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 
 public class Storage {
@@ -15,7 +21,7 @@ public class Storage {
 
     protected ArrayList<Task> loadData() throws IOException, FleurCorruptFileException {
         ArrayList<Task> tasks = new ArrayList<>();
-        DateTimeFormatter INPUT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter INPUT = DateTimeFormatter.ofPattern("MMM dd yyyy");
         File file = new File(dataFile);
         if (!file.exists()) {
             return tasks;
@@ -37,7 +43,7 @@ public class Storage {
                 case 'E':
                     String[] arr = str.substring(7).split("\\(from: ");
                     String description = arr[0];
-                    String from = arr[1].split("to: ")[0];
+                    String from = arr[1].split("to: ")[0].trim();
                     String to = arr[1].split("to: ")[1].replace(")", "");
                     LocalDate dateFrom = LocalDate.parse(from, INPUT);
                     LocalDate dateTo = LocalDate.parse(to, INPUT);

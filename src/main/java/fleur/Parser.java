@@ -8,12 +8,10 @@ public class Parser {
 
     private TaskList taskList;
     private boolean isExit;
-    private final int COUNT;
     private static final DateTimeFormatter INPUT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public Parser(TaskList taskList) {
         this.taskList = taskList;
-        this.COUNT = taskList.size();
         this.isExit = false;
     }
 
@@ -26,9 +24,13 @@ public class Parser {
             } else if (str.startsWith("mark")) {
                 int index = Integer.parseInt(str.substring(5)) - 1;
                 this.taskList.markDone(index);
+                System.out.println("Enchanté! I 'ave marked zis task as done:");
+                System.out.println(this.taskList.getTask(index).toString());
             } else if (str.startsWith("unmark")) {
                 int index = Integer.parseInt(str.substring(7)) - 1;
                 this.taskList.markUndone(index);
+                System.out.println("Zut! I 'ave marked zis task as not done:");
+                System.out.println(this.taskList.getTask(index).toString());
             } else if (str.startsWith("todo")) {
                 addToDo(str);
             } else if (str.startsWith("deadline")) {
@@ -40,8 +42,8 @@ public class Parser {
                 Task deletedTask = this.taskList.getTask(index);
                 System.out.println("D'accord, I 'ave removed zis task from your list:");
                 System.out.println(deletedTask.toString());
-                System.out.println("Now you 'ave " + this.COUNT + " task(s) in your list.");
                 this.taskList.deleteTask(index);
+                System.out.println("Now you 'ave " + this.taskList.size() + " task(s) in your list.");
             } else {
                 throw new FleurInvalidCommandException();
             }
@@ -66,7 +68,7 @@ public class Parser {
             this.taskList.addTask(t);
             System.out.println("Bah, oui! I 'ave added zis todo task to your list:");
             System.out.println(t.toString());
-            System.out.println("Now you 'ave " + this.COUNT + " task(s) in your list.");
+            System.out.println("Now you 'ave " + this.taskList.size() + " task(s) in your list.");
         } catch (IndexOutOfBoundsException e) {
             throw new FleurMissingDetailsException();
         }
@@ -81,7 +83,7 @@ public class Parser {
             this.taskList.addTask(t);
             System.out.println("Bah, oui! I 'ave added zis deadline task to your list:");
             System.out.println(t.toString());
-            System.out.println("Now you 'ave " + this.COUNT + " task(s) in your list.");
+            System.out.println("Now you 'ave " + this.taskList.size() + " task(s) in your list.");
         } catch (IndexOutOfBoundsException e) {
             throw new FleurMissingDetailsException();
         } catch (DateTimeParseException e) {
@@ -101,7 +103,7 @@ public class Parser {
             this.taskList.addTask(t);
             System.out.println("Bah, oui! I 'ave added zis event task to your list:");
             System.out.println(t.toString());
-            System.out.println("Now you 'ave " + this.COUNT + " task(s) in your list.");
+            System.out.println("Now you 'ave " + this.taskList.size() + " task(s) in your list.");
         } catch (IndexOutOfBoundsException e) {
             throw new FleurMissingDetailsException();
         } catch (DateTimeParseException e) {
