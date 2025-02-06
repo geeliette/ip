@@ -7,12 +7,14 @@ import java.time.format.DateTimeParseException;
 public class Parser {
 
     private TaskList taskList;
+    private boolean isExit;
     private final int COUNT;
     private static final DateTimeFormatter INPUT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public Parser(TaskList taskList) {
         this.taskList = taskList;
         this.COUNT = taskList.size();
+        this.isExit = false;
     }
 
     public void parse(String str) {
@@ -48,8 +50,13 @@ public class Parser {
         }
     }
 
+    public boolean isExit() {
+        return this.isExit;
+    }
+
     private void exit() {
         System.out.println("Au revoir, 'ope to see you again soon!");
+        this.isExit = true;
     }
 
     private void addToDo(String str) throws FleurMissingDetailsException {

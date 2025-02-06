@@ -1,49 +1,42 @@
 package fleur;
 
-import java.io.File;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
-import java.util.Scanner;
-import java.util.ArrayList;
-
 public class Fleur {
-//    private static String filePath = "fleur.txt";
-//    private static ArrayList<Task> tasks = new ArrayList<>();
-//    private static int count = 0;
-//    private static final DateTimeFormatter INPUT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//    Scanner scanner = new Scanner(System.in);
-//
+
     private Storage storage;
     private TaskList tasks;
     private static Ui ui;
-//
+
     public Fleur(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.loadData());
-        } catch (FleurException e) {
-            ui.showLoadingError();
+        } catch (FleurException | IOException e) {
+            System.out.println(e.getMessage());
             tasks = new TaskList();
         }
     }
 
-    public void run() {
-        //...
+    public void run() throws IOException {
+        ui.welcomeMessage();
+        Parser parser = new Parser(this.tasks);
+        boolean isExit = false;
+        while (!isExit) {
+            String str = ui.readCommand();
+            parser.parse(str);
+            isExit = parser.isExit();
+        }
+        storage.saveData(this.tasks);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new Fleur("fleur.txt").run();
     }
 
 }
+
 //
 //    public static void main(String[] args) {
 //        Fleur fleur = new Fleur(filePath);

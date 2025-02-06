@@ -15,7 +15,6 @@ public class Storage {
 
     protected ArrayList<Task> loadData() throws IOException, FleurCorruptFileException {
         ArrayList<Task> tasks = new ArrayList<>();
-        int count = 0;
         DateTimeFormatter INPUT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         File file = new File(dataFile);
         if (!file.exists()) {
@@ -51,19 +50,24 @@ public class Storage {
                 t.markAsDone();
             }
             tasks.add(t);
-            count++;
         }
         br.close();
         return tasks;
     }
 
-    protected void saveData(ArrayList<Task> tasks) throws IOException {
-        StringBuilder data = new StringBuilder();
-        for (Task task : tasks) {
-            data.append(task.toString()).append("\n");
+    protected void saveData(TaskList tasks) throws IOException {
+        try {
+            StringBuilder data = new StringBuilder();
+            for (int i = 0; i < tasks.size(); i++) {
+                Task task = tasks.getTask(i);
+                data.append(task.toString()).append("\n");
+            }
+            FileWriter fw = new FileWriter(dataFile, false);
+            fw.write(data.toString());
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Mince! Zere was an error when saving your tasks.");
         }
-        FileWriter fw = new FileWriter(dataFile, false);
-        fw.write(data.toString());
-        fw.close();
     }
+
 }
