@@ -1,31 +1,31 @@
 'Allo! I'm Fleur.
 Tell me what you need to do, s'il vous plaît.
 Bah, oui! I 'ave added zis deadline task to your list:
-[D][ ] watch lecture  (by: Monday)
+[D][ ] watch lecture (by: May 07 2025)
 Now you 'ave 1 task(s) in your list.
 Bah, oui! I 'ave added zis event task to your list:
-[E][ ] meeting  (from: Tue 3pm  to: 6pm)
+[E][ ] meeting (from: Feb 09 2025 to: Feb 10 2025)
 Now you 'ave 2 task(s) in your list.
 Bah, oui! I 'ave added zis todo task to your list:
 [T][ ] tutorial
 Now you 'ave 3 task(s) in your list.
 'Ere are all ze tasks in your list:
-1.[D][ ] watch lecture  (by: Monday)
-2.[E][ ] meeting  (from: Tue 3pm  to: 6pm)
+1.[D][ ] watch lecture (by: May 07 2025)
+2.[E][ ] meeting (from: Feb 09 2025 to: Feb 10 2025)
 3.[T][ ] tutorial
 Enchanté! I 'ave marked zis task as done:
-[E][X] meeting  (from: Tue 3pm  to: 6pm)
+[E][X] meeting (from: Feb 09 2025 to: Feb 10 2025)
 Enchanté! I 'ave marked zis task as done:
-[D][X] watch lecture  (by: Monday)
+[D][X] watch lecture (by: May 07 2025)
 'Ere are all ze tasks in your list:
-1.[D][X] watch lecture  (by: Monday)
-2.[E][X] meeting  (from: Tue 3pm  to: 6pm)
+1.[D][X] watch lecture (by: May 07 2025)
+2.[E][X] meeting (from: Feb 09 2025 to: Feb 10 2025)
 3.[T][ ] tutorial
 Zut! I 'ave marked zis task as not done:
-[E][ ] meeting  (from: Tue 3pm  to: 6pm)
+[E][ ] meeting (from: Feb 09 2025 to: Feb 10 2025)
 'Ere are all ze tasks in your list:
-1.[D][X] watch lecture  (by: Monday)
-2.[E][ ] meeting  (from: Tue 3pm  to: 6pm)
+1.[D][X] watch lecture (by: May 07 2025)
+2.[E][ ] meeting (from: Feb 09 2025 to: Feb 10 2025)
 3.[T][ ] tutorial
 D'accord, I 'ave removed zis task from your list:
 [T][ ] tutorial

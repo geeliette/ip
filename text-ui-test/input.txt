@@ -1,5 +1,5 @@
-deadline watch lecture /by Monday
-event meeting /from Tue 3pm /to 6pm
+deadline watch lecture /by 07/05/2025
+event meeting /from 09/02/2025 /to 10/02/2025
 todo tutorial
 list
 mark 2
