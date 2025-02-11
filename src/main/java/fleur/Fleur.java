@@ -18,7 +18,7 @@ public class Fleur {
             tasks = new TaskList();
         }
     }
-
+    
     public void run() throws IOException {
         ui.welcomeMessage();
         Parser parser = new Parser(this.tasks);
