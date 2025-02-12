@@ -11,14 +11,32 @@ import java.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
 
+/**
+ * The Storage class handles the reading and writing of task data to a file.
+ * This class provides methods to load tasks from the data file and to save current tasks.
+ *
+ */
 public class Storage {
 
     private static String dataFile;
 
+    /**
+     * Constructs a Storage object with the given data file path for saving and loading tasks.
+     *
+     * @param dataFile The path to the file with stored tasks.
+     */
     public Storage(String dataFile) {
         this.dataFile = dataFile;
     }
 
+    /**
+     * Loads tasks from the data file at the specified file path.
+     * If the file does not exist, an empty arraylist of tasks is returned.
+     *
+     * @return An ArrayList of tasks from the file.
+     * @throws IOException If the file is unable to be read.
+     * @throws FleurCorruptFileException If the file has been modified and contains unknown commands,
+     */
     protected ArrayList<Task> loadData() throws IOException, FleurCorruptFileException {
         ArrayList<Task> tasks = new ArrayList<>();
         DateTimeFormatter INPUT = DateTimeFormatter.ofPattern("MMM dd yyyy");
@@ -61,6 +79,12 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves the given list of tasks to the data file at the file path.
+     *
+     * @param tasks The list of tasks to be saved.
+     * @throws IOException If the list of tasks cannot be saved.
+     */
     protected void saveData(TaskList tasks) throws IOException {
         try {
             StringBuilder data = new StringBuilder();

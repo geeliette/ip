@@ -2,12 +2,24 @@ package fleur;
 
 import java.io.IOException;
 
+/**
+ * The Fleur class represents the main application for the chatbot Fleur.
+ *
+ * This class manages loading tasks from a data file, processing user commands,
+ * and saving tasks to the data file.
+ *
+ */
 public class Fleur {
 
     private Storage storage;
     private TaskList tasks;
     private static Ui ui;
 
+    /**
+     * Constructs an instance of the Fleur application with specified data file.
+     *
+     * @param filePath The path to the data file that stores tasks.
+     */
     public Fleur(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -18,7 +30,14 @@ public class Fleur {
             tasks = new TaskList();
         }
     }
-    
+
+    /**
+     * Starts Fleur's main loop.
+     * A welcome message is first displayed before processing user
+     * input until the exit command is given and tasks are saved.
+     *
+     * @throws IOException If data file could not be saved.
+     */
     public void run() throws IOException {
         ui.welcomeMessage();
         Parser parser = new Parser(this.tasks);
@@ -31,6 +50,14 @@ public class Fleur {
         storage.saveData(this.tasks);
     }
 
+    /**
+     * Starts the Fleur bot application.
+     * Creates a new Fleur instance with the data file and
+     * runs the application.
+     *
+     * @param args Command line arguments (not used).
+     * @throws IOException If data file could not be saved.
+     */
     public static void main(String[] args) throws IOException {
         new Fleur("fleur.txt").run();
     }
