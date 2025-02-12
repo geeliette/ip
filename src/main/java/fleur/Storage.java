@@ -37,43 +37,43 @@ public class Storage {
      * @throws IOException If the file is unable to be read.
      * @throws FleurCorruptFileException If the file has been modified and contains unknown commands,
      */
-    protected ArrayList<Task> loadData() throws IOException, FleurCorruptFileException {
+    public ArrayList<Task> loadData() throws IOException, FleurCorruptFileException {
         ArrayList<Task> tasks = new ArrayList<>();
-        DateTimeFormatter INPUT = DateTimeFormatter.ofPattern("MMM dd yyyy");
+        DateTimeFormatter input = DateTimeFormatter.ofPattern("MMM dd yyyy");
         File file = new File(dataFile);
         if (!file.exists()) {
             return tasks;
         }
         BufferedReader br = new BufferedReader(new FileReader(file));
-        String str;
-        while ((str = br.readLine()) != null) {
-            Task t = null;
-            switch (str.charAt(1)) {
+        String command;
+        while ((command = br.readLine()) != null) {
+            Task task = null;
+            switch (command.charAt(1)) {
             case 'T':
-                t = new ToDo(str.substring(7));
+                task = new ToDo(command.substring(7));
                 break;
             case 'D':
-                String desc = str.substring(7).split("\\(by: ")[0];
-                String date = str.substring(7).split("\\(by: ")[1].replace(")", "");
-                LocalDate by = LocalDate.parse(date, INPUT);
-                t = new Deadline(desc, by);
+                String deadlineDescription = command.substring(7).split("\\(by: ")[0];
+                String dueDate = command.substring(7).split("\\(by: ")[1].replace(")", "");
+                LocalDate by = LocalDate.parse(dueDate, input);
+                task = new Deadline(deadlineDescription, by);
                 break;
             case 'E':
-                String[] arr = str.substring(7).split("\\(from: ");
-                String description = arr[0];
-                String from = arr[1].split("to: ")[0].trim();
-                String to = arr[1].split("to: ")[1].replace(")", "");
-                LocalDate dateFrom = LocalDate.parse(from, INPUT);
-                LocalDate dateTo = LocalDate.parse(to, INPUT);
-                t = new Event(description, dateFrom, dateTo);
+                String[] commandArray = command.substring(7).split("\\(from: ");
+                String eventDescription = commandArray[0];
+                String fromDate = commandArray[1].split("to: ")[0].trim();
+                String toDate = commandArray[1].split("to: ")[1].replace(")", "");
+                LocalDate dateFrom = LocalDate.parse(fromDate, input);
+                LocalDate dateTo = LocalDate.parse(toDate, input);
+                task = new Event(eventDescription, dateFrom, dateTo);
                 break;
             default:
                 throw new FleurCorruptFileException();
             }
-            if (str.charAt(4) == 'X') {
-                t.markAsDone();
+            if (command.charAt(4) == 'X') {
+                task.markAsDone();
             }
-            tasks.add(t);
+            tasks.add(task);
         }
         br.close();
         return tasks;
@@ -85,7 +85,7 @@ public class Storage {
      * @param tasks The list of tasks to be saved.
      * @throws IOException If the list of tasks cannot be saved.
      */
-    protected void saveData(TaskList tasks) throws IOException {
+    public void saveData(TaskList tasks) throws IOException {
         try {
             StringBuilder data = new StringBuilder();
             for (int i = 0; i < tasks.size(); i++) {

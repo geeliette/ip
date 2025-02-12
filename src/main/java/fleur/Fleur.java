@@ -39,7 +39,7 @@ public class Fleur {
      * @throws IOException If data file could not be saved.
      */
     public void run() throws IOException {
-        ui.welcomeMessage();
+        ui.showWelcomeMessage();
         Parser parser = new Parser(this.tasks);
         boolean isExit = false;
         while (!isExit) {
