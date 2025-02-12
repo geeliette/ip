@@ -20,7 +20,7 @@ public class Fleur {
     }
     
     public void run() throws IOException {
-        ui.welcomeMessage();
+        ui.showWelcomeMessage();
         Parser parser = new Parser(this.tasks);
         boolean isExit = false;
         while (!isExit) {

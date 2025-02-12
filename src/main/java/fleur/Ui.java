@@ -10,7 +10,7 @@ public class Ui {
         this.scanner = new Scanner(System.in);
     }
 
-    public void welcomeMessage() {
+    public void showWelcomeMessage() {
         System.out.println("'Allo! I'm Fleur.");
         System.out.println("Tell me what you need to do, s'il vous plaît.");
     }
