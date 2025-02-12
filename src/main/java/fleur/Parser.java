@@ -4,17 +4,35 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * The Parser class processes and performs actions based on user input.
+ * This class interprets commands such as "bye", "list", "mark", "unmark", "todo", "deadline",
+ * "event" and "delete" and invokes the appropriate methods based on the given command.
+ * If given command is invalid, this class throws an exception.
+ *
+ */
 public class Parser {
 
     private TaskList taskList;
     private boolean isExit;
     private static final DateTimeFormatter INPUT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+    /**
+     * Constructs a new Parser with the given TaskList.
+     * By default, the user input is not the exit command initially.
+     *
+     * @param taskList The list of tasks to be acted upon based on user input.
+     */
     public Parser(TaskList taskList) {
         this.taskList = taskList;
         this.isExit = false;
     }
 
+    /**
+     * Parses the user command and performs the corresponding action using the relevant method.
+     *
+     * @param str The user command.
+     */
     public void parse(String str) {
         try {
             if (str.equalsIgnoreCase("bye")) {
@@ -52,6 +70,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns whether the exit command has been given.
+     *
+     * @return Whether user input is exit command.
+     */
     public boolean isExit() {
         return this.isExit;
     }
