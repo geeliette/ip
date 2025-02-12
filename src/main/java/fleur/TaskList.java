@@ -97,4 +97,15 @@ public class TaskList {
         }
     }
 
+    public TaskList findTask(String keyword) {
+        TaskList matchingTasks = new TaskList();
+        for (int i = 0; i < this.tasks.size(); i++) {
+            Task task = this.tasks.get(i);
+            if (task.description.toLowerCase().contains(keyword.toLowerCase())) {
+                matchingTasks.addTask(task);
+            }
+        }
+        return matchingTasks;
+    }
+
 }

@@ -10,4 +10,5 @@ list
 delete 3
 hi
 todo
+find lecture
 bye

@@ -59,7 +59,7 @@ public class Fleur {
      * @throws IOException If data file could not be saved.
      */
     public static void main(String[] args) throws IOException {
-        new Fleur("fleur.txt").run();
+        new Fleur("./src/main/data/fleur.txt").run();
     }
 
 }
