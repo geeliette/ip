@@ -32,7 +32,7 @@ public class Fleur {
     }
 
     public static void main(String[] args) throws IOException {
-        new Fleur("fleur.txt").run();
+        new Fleur("./src/main/data/fleur.txt").run();
     }
 
 }

@@ -32,4 +32,6 @@ D'accord, I 'ave removed zis task from your list:
 Now you 'ave 2 task(s) in your list.
 Désolé, I do not know what you mean!
 Ah, non! Your task eez missing le description and/or date.
+'Ere are ze task(s) in your list:
+1.[D][X] watch lecture (by: May 07 2025)
 Au revoir, 'ope to see you again soon!

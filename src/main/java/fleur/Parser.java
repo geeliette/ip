@@ -44,6 +44,17 @@ public class Parser {
                 System.out.println(deletedTask.toString());
                 this.taskList.deleteTask(index);
                 System.out.println("Now you 'ave " + this.taskList.size() + " task(s) in your list.");
+            } else if (str.startsWith("find")){
+                String keyword = str.substring(5);
+                TaskList matchingTasks = this.taskList.findTask(keyword);
+                if (matchingTasks.size() == 0) {
+                    System.out.println("Zere are no tasks found.");
+                } else {
+                    System.out.println("'Ere are ze task(s) in your list:");
+                    for (int i = 0; i < matchingTasks.size(); i++) {
+                        System.out.println((i + 1) + "." + matchingTasks.getTask(i).toString());
+                    }
+                }
             } else {
                 throw new FleurInvalidCommandException();
             }
