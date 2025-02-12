@@ -63,8 +63,8 @@ public class Parser {
                 System.out.println(deletedTask.toString());
                 this.taskList.deleteTask(index);
                 System.out.println("Now you 'ave " + this.taskList.size() + " task(s) in your list.");
-            } else if (str.startsWith("find")){
-                String keyword = str.substring(5);
+            } else if (command.startsWith("find")){
+                String keyword = command.substring(5);
                 TaskList matchingTasks = this.taskList.findTask(keyword);
                 if (matchingTasks.size() == 0) {
                     System.out.println("Zere are no tasks found.");
