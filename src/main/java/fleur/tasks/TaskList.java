@@ -86,15 +86,15 @@ public class TaskList {
      * Displays and numbers all the tasks in the list.
      * If list is empty, a message indicating that the user has no tasks will be displayed.
      */
-    public void listTasks() {
-        if (this.tasks.isEmpty()) {
-            System.out.println("You 'ave non tasks in your list.");
-        } else {
-            System.out.println("'Ere are all ze tasks in your list:");
-            for (int i = 0; i < this.tasks.size(); i++) {
-                System.out.println((i + 1) + "." + this.tasks.get(i).toString());
+    public String listTasks() {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < this.tasks.size(); i++) {
+            if (i != 0) {
+                result.append("\n");
             }
+            result.append((i + 1)).append(".").append(this.tasks.get(i));
         }
+        return result.toString();
     }
 
     public TaskList findTask(String keyword) {
