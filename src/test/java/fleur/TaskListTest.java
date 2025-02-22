@@ -2,6 +2,10 @@ package fleur;
 
 import org.junit.jupiter.api.Test;
 
+import fleur.tasks.TaskList;
+import fleur.tasks.Task;
+import fleur.tasks.ToDo;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

@@ -1,5 +1,10 @@
 package fleur;
 
+import fleur.tasks.TaskList;
+import fleur.tasks.Task;
+import fleur.tasks.Deadline;
+import fleur.parser.Parser;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
