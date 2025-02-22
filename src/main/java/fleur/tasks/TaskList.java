@@ -85,6 +85,8 @@ public class TaskList {
     /**
      * Displays and numbers all the tasks in the list.
      * If list is empty, a message indicating that the user has no tasks will be displayed.
+     *
+     * @return The list of tasks in form of String.
      */
     public String listTasks() {
         StringBuilder result = new StringBuilder();

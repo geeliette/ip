@@ -5,9 +5,11 @@ import java.io.IOException;
 import fleur.storage.Storage;
 import fleur.tasks.TaskList;
 import fleur.ui.Ui;
-import fleur.exceptions.FleurException;
 import fleur.parser.Parser;
 import fleur.commands.Command;
+
+import fleur.exceptions.FleurException;
+import java.io.IOException;
 
 /**
  * The Fleur class represents the main application for the chatbot Fleur.
@@ -19,60 +21,58 @@ import fleur.commands.Command;
 public class Fleur {
 
     private Storage storage;
-    private fleur.tasks.TaskList tasks;
+    private TaskList tasks;
     private static Ui ui;
+    private static final String FILEPATH = "./src/main/data/fleur.txt";
 
     /**
      * Constructs an instance of the Fleur application with specified data file.
-     *
-     * @param filePath The path to the data file that stores tasks.
      */
-    public Fleur(String filePath) {
+    public Fleur() {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage(FILEPATH);
         try {
-            tasks = new TaskList(storage.loadData());
+            this.tasks = new TaskList(storage.loadData());
         } catch (FleurException | IOException e) {
             System.out.println(e.getMessage());
-            tasks = new TaskList();
+            this.tasks = new TaskList();
         }
-    }
-
-    /**
-     * Starts Fleur's main loop.
-     * A welcome message is first displayed before processing user
-     * input until the exit command is given and tasks are saved.
-     *
-     * @throws IOException If data file could not be saved.
-     */
-    public void run() throws IOException, FleurException {
         ui.showWelcomeMessage();
-        Parser parser = new Parser(this.tasks);
-        boolean isExit = false;
-
-        while (!isExit) {
-            try {
-                String input = ui.readCommand();
-                Command command = parser.parse(input);
-                System.out.println(command.execute(this.tasks));
-                isExit = command.isExit();
-            } catch (FleurException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        storage.saveData(this.tasks);
     }
 
     /**
-     * Starts the Fleur bot application.
-     * Creates a new Fleur instance with the data file and
-     * runs the application.
+     * Takes in user input and returns a string response.
      *
-     * @param args Command line arguments (not used).
-     * @throws IOException If data file could not be saved.
+     * @param input The user input.
+     * @return The response by the bot in the form of String.
      */
-    public static void main(String[] args) throws IOException, FleurException {
-        new Fleur("./src/main/data/fleur.txt").run();
+    public String getResponse(String input) {
+        try {
+            Parser parser = new Parser(this.tasks);
+            Command command = parser.parse(input);
+            return command.execute(this.tasks);
+        } catch (FleurException e) {
+            return e.getMessage();
+        }
+    }
+
+    /**
+     * Checks if the user input is an exit command.
+     *
+     * @param input User input.
+     * @return True if the user input is an exit command, false otherwise.
+     */
+    public boolean isExit(String input) {
+        Parser parser = new Parser(this.tasks);
+        Command command = parser.parse(input);
+        return command.isExit();
+    }
+
+    /**
+     * Saves tasks to data file when the application exits.
+     */
+    public void saveOnExit() throws IOException {
+        this.storage.saveData(this.tasks);
     }
 
 }
