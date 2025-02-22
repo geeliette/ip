@@ -49,11 +49,16 @@ public class Fleur {
         ui.showWelcomeMessage();
         Parser parser = new Parser(this.tasks);
         boolean isExit = false;
+
         while (!isExit) {
-            String input = ui.readCommand();
-            Command command = parser.parse(input);
-            System.out.println(command.execute(this.tasks));
-            isExit = command.isExit();
+            try {
+                String input = ui.readCommand();
+                Command command = parser.parse(input);
+                System.out.println(command.execute(this.tasks));
+                isExit = command.isExit();
+            } catch (FleurException e) {
+                System.out.println(e.getMessage());
+            }
         }
         storage.saveData(this.tasks);
     }
