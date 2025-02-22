@@ -1,4 +1,4 @@
-package fleur;
+package fleur.ui;
 
 import java.util.Scanner;
 

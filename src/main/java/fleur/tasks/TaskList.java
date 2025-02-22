@@ -1,4 +1,4 @@
-package fleur;
+package fleur.tasks;
 
 import java.util.ArrayList;
 

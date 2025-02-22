@@ -1,4 +1,4 @@
-package fleur;
+package fleur.tasks;
 
 /**
  * The Task class represents a generic task with a description and completion status.

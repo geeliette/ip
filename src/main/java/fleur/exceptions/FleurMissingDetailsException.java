@@ -1,4 +1,4 @@
-package fleur;
+package fleur.exceptions;
 
 public class FleurMissingDetailsException extends FleurException {
     public FleurMissingDetailsException() {

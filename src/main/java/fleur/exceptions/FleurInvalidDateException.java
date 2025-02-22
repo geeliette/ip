@@ -1,4 +1,4 @@
-package fleur;
+package fleur.exceptions;
 
 public class FleurInvalidDateException extends FleurException {
     public FleurInvalidDateException() {

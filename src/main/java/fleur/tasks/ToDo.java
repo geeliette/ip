@@ -1,4 +1,4 @@
-package fleur;
+package fleur.tasks;
 
 /**
  * The ToDo class represents a todo task with a description and completion status.

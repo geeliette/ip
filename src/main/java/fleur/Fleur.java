@@ -2,6 +2,12 @@ package fleur;
 
 import java.io.IOException;
 
+import fleur.storage.Storage;
+import fleur.tasks.TaskList;
+import fleur.ui.Ui;
+import fleur.exceptions.FleurException;
+import fleur.parser.Parser;
+
 /**
  * The Fleur class represents the main application for the chatbot Fleur.
  *
@@ -12,7 +18,7 @@ import java.io.IOException;
 public class Fleur {
 
     private Storage storage;
-    private TaskList tasks;
+    private fleur.tasks.TaskList tasks;
     private static Ui ui;
 
     /**

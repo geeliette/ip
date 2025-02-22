@@ -1,4 +1,4 @@
-package fleur;
+package fleur.exceptions;
 
 public class FleurInvalidCommandException extends FleurException {
     public FleurInvalidCommandException() {

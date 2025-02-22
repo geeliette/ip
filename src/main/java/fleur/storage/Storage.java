@@ -1,4 +1,4 @@
-package fleur;
+package fleur.storage;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,6 +10,13 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
+
+import fleur.tasks.TaskList;
+import fleur.tasks.Task;
+import fleur.tasks.ToDo;
+import fleur.tasks.Deadline;
+import fleur.tasks.Event;
+import fleur.exceptions.FleurCorruptFileException;
 
 /**
  * The Storage class handles the reading and writing of task data to a file.
