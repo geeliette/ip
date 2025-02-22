@@ -7,6 +7,7 @@ import fleur.tasks.TaskList;
 import fleur.ui.Ui;
 import fleur.exceptions.FleurException;
 import fleur.parser.Parser;
+import fleur.commands.Command;
 
 /**
  * The Fleur class represents the main application for the chatbot Fleur.
@@ -44,14 +45,15 @@ public class Fleur {
      *
      * @throws IOException If data file could not be saved.
      */
-    public void run() throws IOException {
+    public void run() throws IOException, FleurException {
         ui.showWelcomeMessage();
         Parser parser = new Parser(this.tasks);
         boolean isExit = false;
         while (!isExit) {
-            String str = ui.readCommand();
-            parser.parse(str);
-            isExit = parser.isExit();
+            String input = ui.readCommand();
+            Command command = parser.parse(input);
+            System.out.println(command.execute(this.tasks));
+            isExit = command.isExit();
         }
         storage.saveData(this.tasks);
     }
@@ -64,7 +66,7 @@ public class Fleur {
      * @param args Command line arguments (not used).
      * @throws IOException If data file could not be saved.
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, FleurException {
         new Fleur("./src/main/data/fleur.txt").run();
     }
 
