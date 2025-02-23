@@ -14,6 +14,7 @@ public class AddDeadlineCommand extends Command {
 
     private String input;
     private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy");
 
     public AddDeadlineCommand(String input) {
         this.input = input;
@@ -38,5 +39,13 @@ public class AddDeadlineCommand extends Command {
         } catch (DateTimeParseException e) {
             throw new FleurInvalidDateException();
         }
+    }
+
+    public Task createDeadline() {
+        String description = input.substring(7).split("\\(by: ")[0];
+        String dueDate = input.substring(7).split("\\(by: ")[1].replace(")", "");
+        LocalDate by = LocalDate.parse(dueDate, OUTPUT_FORMAT);
+        Task newDeadline = new Deadline(description, by);
+        return newDeadline;
     }
 }

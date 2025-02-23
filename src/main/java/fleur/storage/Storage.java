@@ -6,16 +6,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 import java.util.ArrayList;
 
 import fleur.tasks.TaskList;
 import fleur.tasks.Task;
-import fleur.tasks.ToDo;
-import fleur.tasks.Deadline;
-import fleur.tasks.Event;
+import fleur.commands.AddToDoCommand;
+import fleur.commands.AddDeadlineCommand;
+import fleur.commands.AddEventCommand;
 import fleur.exceptions.FleurCorruptFileException;
 
 /**
@@ -46,7 +43,6 @@ public class Storage {
      */
     public ArrayList<Task> loadData() throws IOException, FleurCorruptFileException {
         ArrayList<Task> tasks = new ArrayList<>();
-        DateTimeFormatter input = DateTimeFormatter.ofPattern("MMM dd yyyy");
         File file = new File(dataFile);
         if (!file.exists()) {
             return tasks;
@@ -54,29 +50,12 @@ public class Storage {
         BufferedReader br = new BufferedReader(new FileReader(file));
         String command;
         while ((command = br.readLine()) != null) {
-            Task task = null;
-            switch (command.charAt(1)) {
-            case 'T':
-                task = new ToDo(command.substring(7));
-                break;
-            case 'D':
-                String deadlineDescription = command.substring(7).split("\\(by: ")[0];
-                String dueDate = command.substring(7).split("\\(by: ")[1].replace(")", "");
-                LocalDate by = LocalDate.parse(dueDate, input);
-                task = new Deadline(deadlineDescription, by);
-                break;
-            case 'E':
-                String[] commandArray = command.substring(7).split("\\(from: ");
-                String eventDescription = commandArray[0];
-                String fromDate = commandArray[1].split("to: ")[0].trim();
-                String toDate = commandArray[1].split("to: ")[1].replace(")", "");
-                LocalDate dateFrom = LocalDate.parse(fromDate, input);
-                LocalDate dateTo = LocalDate.parse(toDate, input);
-                task = new Event(eventDescription, dateFrom, dateTo);
-                break;
-            default:
-                throw new FleurCorruptFileException();
-            }
+            Task task = switch (command.charAt(1)) {
+                case 'T' -> new AddToDoCommand(command).createToDo();
+                case 'D' -> new AddDeadlineCommand(command).createDeadline();
+                case 'E' -> new AddEventCommand(command).createEvent();
+                default -> throw new FleurCorruptFileException();
+            };
             if (command.charAt(4) == 'X') {
                 task.markAsDone();
             }

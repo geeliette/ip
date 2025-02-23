@@ -14,6 +14,7 @@ public class AddEventCommand extends Command {
 
     private String input;
     private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy");
 
     public AddEventCommand(String input) {
         this.input = input;
@@ -41,5 +42,16 @@ public class AddEventCommand extends Command {
         } catch (DateTimeParseException e) {
             throw new FleurInvalidDateException();
         }
+    }
+
+    public Task createEvent() {
+        String[] inputArray = input.substring(7).split("\\(from: ");
+        String description = inputArray[0];
+        String fromDate = inputArray[1].split("to: ")[0].trim();
+        String toDate = inputArray[1].split("to: ")[1].replace(")", "");
+        LocalDate formattedFrom = LocalDate.parse(fromDate, OUTPUT_FORMAT);
+        LocalDate formattedTo = LocalDate.parse(toDate, OUTPUT_FORMAT);
+        Task newEvent = new Event(description, formattedFrom, formattedTo);
+        return newEvent;
     }
 }
