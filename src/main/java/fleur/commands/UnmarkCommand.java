@@ -12,6 +12,9 @@ public class UnmarkCommand extends Command {
 
     @Override
     public String execute(TaskList tasks) {
+        assert index > 0 : "Task number must be greater than 0.";
+        assert index <= tasks.size() : "Task number must be less than or equal to number of tasks";
+
         tasks.markUndone(this.index);
         StringBuilder result = new StringBuilder();
         result.append("Zut! I 'ave marked zis task as not done:\n");
