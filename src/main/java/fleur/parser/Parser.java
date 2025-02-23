@@ -45,8 +45,10 @@ public class Parser {
      */
 
     public Command parse(String input) {
-        String command = input.split(" ")[0];
+        assert input != null : "Input cannot be null";
+        assert !input.trim().isEmpty() : "Input cannot be empty";
 
+        String command = input.split(" ")[0];
         try {
             return switch (command) {
             case "bye" -> new ByeCommand();
