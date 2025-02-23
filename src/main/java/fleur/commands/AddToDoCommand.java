@@ -30,4 +30,10 @@ public class AddToDoCommand extends Command {
         }
     }
 
+    public Task createToDo() {
+        String description = input.substring(7);
+        Task newToDo = new ToDo(description);
+        return newToDo;
+    }
+
 }
