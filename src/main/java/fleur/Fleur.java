@@ -9,7 +9,6 @@ import fleur.parser.Parser;
 import fleur.commands.Command;
 
 import fleur.exceptions.FleurException;
-import java.io.IOException;
 
 /**
  * The Fleur class represents the main application for the chatbot Fleur.

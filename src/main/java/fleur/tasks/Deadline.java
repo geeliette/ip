@@ -23,6 +23,16 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    public void edit(String newDescription, LocalDate newBy) {
+        this.description = newDescription;
+        this.by = newBy;
+    }
+
+    @Override
+    public String getTaskType() {
+        return "deadline";
+    }
+
     @Override
     public String toString() {
         return "[D]" + super.toString() + "(by: " + this.by.format(OUTPUT) + ")";

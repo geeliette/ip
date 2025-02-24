@@ -26,6 +26,17 @@ public class Event extends Task {
         this.to = to;
     }
 
+    public void edit(String newDescription, LocalDate newFrom, LocalDate newTo) {
+        this.description = newDescription;
+        this.from = newFrom;
+        this.to = newTo;
+    }
+
+    @Override
+    public String getTaskType() {
+        return "event";
+    }
+
     @Override
     public String toString() {
         return "[E]" + super.toString() + "(from: " + this.from.format(OUTPUT) +
