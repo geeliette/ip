@@ -21,9 +21,8 @@ public class Ui {
     /**\
      * Displays a welcome message to the user when the program starts.
      */
-    public void showWelcomeMessage() {
-        System.out.println("'Allo! I'm Fleur.");
-        System.out.println("Tell me what you need to do, s'il vous plaît.");
+    public String showWelcomeMessage() {
+        return "'Allo! I'm Fleur. Tell me what you need to do, s'il vous plaît.";
     }
 
     /**

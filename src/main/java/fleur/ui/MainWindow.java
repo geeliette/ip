@@ -41,6 +41,11 @@ public class MainWindow extends AnchorPane {
     /** Injects the Fleur instance */
     public void setFleur(Fleur f) {
         fleur = f;
+
+        // Display the welcome message in the UI
+        dialogContainer.getChildren().add(
+                DialogBox.getFleurDialog(fleur.getWelcomeMessage(), fleurImage)
+        );
     }
 
     /**

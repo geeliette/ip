@@ -36,7 +36,15 @@ public class Fleur {
             System.out.println(e.getMessage());
             this.tasks = new TaskList();
         }
-        ui.showWelcomeMessage();
+    }
+
+    /**
+     * Returns the welcome message to be displayed in the UI.
+     *
+     * @return The welcome message as a string.
+     */
+    public String getWelcomeMessage() {
+        return ui.showWelcomeMessage();
     }
 
     /**

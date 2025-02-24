@@ -1,4 +1,3 @@
-[D][ ] quack (by: Aug 15 2025)
-[T][ ] meow
-[E][X] oink (from: Mar 02 2026 to: Apr 02 2026)
-[T][ ] rawr
+[T][X] watch lecture
+[E][X] midterms period (from: Mar 05 2025 to: Mar 06 2025)
+[D][X] submit assignment (by: Feb 25 2025)
