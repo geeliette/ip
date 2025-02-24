@@ -1,3 +1,4 @@
-[D][ ] moo (by: Feb 07 2025)
-[E][X] rawr (from: Feb 24 2026 to: Feb 27 2026)
+[D][ ] quack (by: Aug 15 2025)
 [T][ ] meow
+[E][X] oink (from: Mar 02 2026 to: Apr 02 2026)
+[T][ ] rawr
