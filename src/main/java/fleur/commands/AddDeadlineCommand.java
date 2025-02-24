@@ -24,10 +24,10 @@ public class AddDeadlineCommand extends Command {
     public String execute(TaskList tasks) throws FleurMissingDetailsException, FleurInvalidDateException {
         try {
             StringBuilder result = new StringBuilder();
-            String deadlineDescription = input.substring(9).split("/by")[0];
+            String description = input.substring(9).split("/by")[0];
             String dueDate = input.substring(9).split("/by")[1].trim();
             LocalDate by = LocalDate.parse(dueDate, INPUT_FORMAT);
-            Task newDeadline = new Deadline(deadlineDescription, by);
+            Task newDeadline = new Deadline(description, by);
             tasks.addTask(newDeadline);
             result.append("Bah, oui! I 'ave added zis deadline task to your list:\n");
             result.append(newDeadline);

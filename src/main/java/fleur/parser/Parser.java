@@ -10,6 +10,7 @@ import fleur.commands.AddDeadlineCommand;
 import fleur.commands.AddEventCommand;
 import fleur.commands.DeleteCommand;
 import fleur.commands.FindCommand;
+import fleur.commands.EditCommand;
 import fleur.commands.InvalidCommand;
 import fleur.tasks.TaskList;
 import fleur.exceptions.FleurException;
@@ -60,6 +61,7 @@ public class Parser {
             case "event" -> new AddEventCommand(input);
             case "delete" -> new DeleteCommand(input);
             case "find" -> new FindCommand(input);
+            case "edit" -> new EditCommand(input);
             default -> throw new FleurInvalidCommandException();
             };
         } catch (FleurException e) {

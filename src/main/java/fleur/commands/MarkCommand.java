@@ -12,7 +12,7 @@ public class MarkCommand extends Command {
 
     @Override
     public String execute(TaskList tasks) {
-        assert index > 0 : "Task number must be greater than 0.";
+        assert index >= 0 : "Task number must be greater than 0.";
         assert index <= tasks.size() : "Task number must be less than or equal to number of tasks";
 
         tasks.markDone(this.index);

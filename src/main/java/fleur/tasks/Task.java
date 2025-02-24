@@ -5,7 +5,7 @@ package fleur.tasks;
  * This class serves as the base class for the types of tasks: ToDo, Deadline and Event.
  *
  */
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -41,6 +41,12 @@ public class Task {
 
     public boolean isDone() {
         return this.isDone;
+    }
+
+    public abstract String getTaskType();
+
+    public void edit(String newDescription) {
+        this.description = newDescription;
     }
 
     /**
