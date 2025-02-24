@@ -11,6 +11,7 @@ public class Event extends Task {
 
     protected LocalDate from;
     protected LocalDate to;
+    private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("MMM dd yyyy");
 
     /**
@@ -26,7 +27,13 @@ public class Event extends Task {
         this.to = to;
     }
 
-    public void edit(String newDescription, LocalDate newFrom, LocalDate newTo) {
+    public void edit(String input) {
+        String[] commandArray = input.split("/from");
+        String newDescription = commandArray[0];
+        String fromDate = commandArray[1].split("/to")[0].trim();
+        String toDate = commandArray[1].split("/to")[1].trim();
+        LocalDate newFrom = LocalDate.parse(fromDate, INPUT_FORMAT);
+        LocalDate newTo = LocalDate.parse(toDate, INPUT_FORMAT);
         this.description = newDescription;
         this.from = newFrom;
         this.to = newTo;

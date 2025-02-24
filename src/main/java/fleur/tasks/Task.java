@@ -45,6 +45,10 @@ public abstract class Task {
 
     public abstract String getTaskType();
 
+    public void edit(String newDescription) {
+        this.description = newDescription;
+    }
+
     /**
      * Returns a string representation of the task.
      * The string includes the task's status icon and description.

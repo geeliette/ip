@@ -10,7 +10,8 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
 
     protected LocalDate by;
-    private static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("MMM dd yyyy");
+    private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy");
 
     /**
      * Constructs a new deadline task with the given description and due date.
@@ -23,7 +24,11 @@ public class Deadline extends Task {
         this.by = by;
     }
 
-    public void edit(String newDescription, LocalDate newBy) {
+    @Override
+    public void edit(String input) {
+        String newDescription = input.split("/by")[0];
+        String dueDate = input.split("/by")[1].trim();
+        LocalDate newBy = LocalDate.parse(dueDate, INPUT_FORMAT);
         this.description = newDescription;
         this.by = newBy;
     }
@@ -35,6 +40,6 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by: " + this.by.format(OUTPUT) + ")";
+        return "[D]" + super.toString() + "(by: " + this.by.format(OUTPUT_FORMAT) + ")";
     }
 }
